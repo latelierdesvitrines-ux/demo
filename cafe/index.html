@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Maison Origine — Café de spécialité (maquette)</title>
+<meta name="description" content="Maquette : un café de spécialité, du grain à la tasse. Données d'exemple.">
+<meta name="theme-color" content="#16100c">
+<link rel="preload" as="image" href="img/grains-pc.webp" media="(min-width:700px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/grains-m.webp" media="(max-width:699px)" fetchpriority="high">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="brand" href="#top">Maison Origine</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><span></span><span></span></button>
+  <nav id="links">
+    <a href="#parcours">Le parcours</a><a href="#histoire">Notre histoire</a><a href="#carte">La carte</a><a href="#galerie">Galerie</a><a href="#contact">Venir</a>
+  </nav>
+</header>
+
+<main id="top">
+<!-- Parcours : 5 étapes épinglées -->
+<section class="stage" id="parcours" aria-label="Du grain à la tasse">
+  <div class="pin">
+    <div class="layers" id="layers">
+      <picture class="layer"><source media="(max-width:699px)" srcset="img/grains-m.webp"><img src="img/grains-pc.webp" alt="Gros plan sur des grains de café torréfiés" width="1600" height="900" fetchpriority="high" style="object-position:50% 50%"></picture>
+      <picture class="layer"><source media="(max-width:699px)" srcset="img/mouture-m.webp"><img src="img/mouture-pc.webp" alt="Café moulu qui tombe du porte-filtre" width="1122" height="1402" style="object-position:50% 40%"></picture>
+      <picture class="layer"><source media="(max-width:699px)" srcset="img/espresso-m.webp"><img src="img/espresso-pc.webp" alt="Un espresso qui coule dans une tasse blanche" width="1122" height="1402" style="object-position:50% 45%"></picture>
+      <picture class="layer"><source media="(max-width:699px)" srcset="img/lait-b-m.webp"><img src="img/lait-b-pc.webp" alt="Lait mousseux versé dans l'espresso" width="1122" height="1402" style="object-position:50% 55%"></picture>
+      <picture class="layer"><source media="(max-width:699px)" srcset="img/latte-art-m.webp"><img src="img/latte-art-pc.webp" alt="Latte art en forme de feuille" width="1122" height="1122" style="object-position:40% 50%"></picture>
+    </div>
+    <div class="shade"></div><div class="glow" id="glow"></div>
+    <div class="copy" id="copy">
+      <article class="step"><p class="kicker">01 · Le grain</p><h1>Un café qui commence<br>par un bon grain.</h1><p>Arabica d'altitude, récolté à la main, torréfié en petites quantités chaque semaine. <em>Origine : Éthiopie, Colombie (exemple).</em></p></article>
+      <article class="step"><p class="kicker">02 · La mouture</p><h2>Moulu à la minute.</h2><p>Les arômes s'envolent vite : nous moulons juste avant l'extraction. Notes de cacao, de noisette et de fruits rouges.</p></article>
+      <article class="step"><p class="kicker">03 · L'espresso</p><h2>Vingt-huit secondes.</h2><p>Neuf bars, 93 °C, une crème épaisse et dorée. Le geste du barista fait la différence.</p></article>
+      <article class="step"><p class="kicker">04 · Le lait</p><h2>Un lait soyeux.</h2><p>Lait frais de ferme, texturé à la vapeur jusqu'à devenir velouté, sans grosses bulles.</p></article>
+      <article class="step"><p class="kicker">05 · Le latte art</p><h2>Le dernier geste.</h2><p>Une feuille dessinée à la main. Chaque tasse est servie chaude, tout de suite.</p><a class="soft" href="#carte">Voir la carte</a></article>
+    </div>
+    <ol class="rail" id="rail" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li></ol>
+    <p class="hint" id="hint">Faites défiler</p>
+  </div>
+</section>
+
+<section class="sec" id="histoire">
+  <div class="wrap two">
+    <div class="rv"><p class="kicker">Notre histoire</p><h2>Un petit torréfacteur de quartier.</h2></div>
+    <div class="rv">
+      <p>Maison Origine est née d'une idée simple : servir un café dont on connaît l'histoire. Nous travaillons directement avec quelques petits producteurs, et nous torréfions en petites séries pour garder le goût du grain.</p>
+      <p>Ici, rien n'est pressé. Du grain à la tasse, chaque étape est faite avec soin, par des gens qui aiment ce qu'ils servent.</p>
+      <ul class="facts"><li><b>3</b> origines suivies</li><li><b>7 j</b> entre torréfaction et tasse</li><li><b>100 %</b> arabica</li></ul>
+      <p class="mini">Texte et chiffres d'exemple (maquette).</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="carte">
+  <div class="wrap">
+    <div class="rv head"><p class="kicker">La carte</p><h2>Boissons et douceurs.</h2><p class="mini">Prix « exemple », non contractuels.</p></div>
+    <div class="menu">
+      <div class="rv"><h3>Cafés</h3><ul>
+        <li><span><b>Espresso</b><i>Café de la maison</i></span><em>2,50 €</em></li>
+        <li><span><b>Allongé</b><i>Espresso, eau chaude filtrée</i></span><em>3,00 €</em></li>
+        <li><span><b>Filtre du jour</b><i>Café de filtre, origine au choix</i></span><em>3,80 €</em></li>
+        <li><span><b>Cortado</b><i>Espresso, un peu de lait chaud</i></span><em>3,60 €</em></li></ul></div>
+      <div class="rv"><h3>Au lait</h3><ul>
+        <li><span><b>Cappuccino</b><i>Espresso, lait mousseux, cacao</i></span><em>4,20 €</em></li>
+        <li><span><b>Latte</b><i>Double espresso, lait velouté</i></span><em>4,60 €</em></li>
+        <li><span><b>Flat white</b><i>Double espresso, lait micro-mousse</i></span><em>4,50 €</em></li>
+        <li><span><b>Chocolat chaud</b><i>Chocolat noir, lait entier</i></span><em>4,80 €</em></li></ul></div>
+      <div class="rv"><h3>À grignoter</h3><ul>
+        <li><span><b>Croissant pur beurre</b><i>Farine, beurre AOP, levain</i></span><em>1,90 €</em></li>
+        <li><span><b>Pain au chocolat</b><i>Farine, beurre, chocolat noir</i></span><em>2,10 €</em></li>
+        <li><span><b>Cake du moment</b><i>Œufs, beurre, fruits de saison</i></span><em>3,50 €</em></li>
+        <li><span><b>Tartine beurre-confiture</b><i>Pain de campagne, beurre, confiture</i></span><em>4,50 €</em></li></ul></div>
+    </div>
+    <p class="mini rv">Boissons végétales sur demande (+0,40 €, exemple). Allergènes : lait, gluten, œufs, fruits à coque.</p>
+  </div>
+</section>
+
+<section class="sec" id="galerie">
+  <div class="wrap">
+    <div class="rv head"><p class="kicker">Galerie</p><h2>Le lieu, la tasse, le four.</h2></div>
+    <div class="gal">
+      <figure class="tilt rv big"><picture><source media="(max-width:699px)" srcset="img/interieur-m.webp"><img loading="lazy" src="img/interieur-pc.webp" alt="Salle lumineuse avec plantes et comptoir en bois" width="1600" height="900"></picture><figcaption>La salle</figcaption></figure>
+      <figure class="tilt rv"><picture><source media="(max-width:699px)" srcset="img/croissant-m.webp"><img loading="lazy" src="img/croissant-pc.webp" alt="Croissant doré sur une planche en bois" width="1122" height="1402"></picture><figcaption>Le croissant, chaque matin</figcaption></figure>
+      <figure class="tilt rv"><picture><source media="(max-width:699px)" srcset="img/espresso-m.webp"><img loading="lazy" src="img/espresso-pc.webp" alt="Espresso à la sortie de la machine" width="1122" height="1402"></picture><figcaption>L'espresso</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="contact">
+  <div class="wrap two">
+    <div class="rv"><p class="kicker">Venir nous voir</p><h2>Adresse et horaires.</h2>
+      <p>12 rue des Torréfacteurs<br>45000 Orléans <span class="mini">(adresse d'exemple)</span></p>
+      <dl class="hours"><div><dt>Lundi – vendredi</dt><dd>7 h 30 – 18 h</dd></div><div><dt>Samedi</dt><dd>8 h 30 – 19 h</dd></div><div><dt>Dimanche</dt><dd>9 h – 14 h</dd></div></dl>
+      <p class="mini">Horaires d'exemple.</p></div>
+    <form class="rv" id="form" novalidate>
+      <label>Un mot pour nous ?<span class="mini"> (privatisation, groupes, questions)</span></label>
+      <input name="n" type="text" placeholder="Votre nom" autocomplete="name" required>
+      <input name="e" type="email" placeholder="Votre e-mail" autocomplete="email" required>
+      <textarea name="m" rows="3" placeholder="Votre message" required></textarea>
+      <button type="submit" class="soft">Envoyer</button>
+      <p class="mini" id="ok" role="status">Maquette : rien n'est envoyé.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <strong>Maison Origine</strong>
+    <span>© 2026 · Maquette fictive · <a href="#top">Mentions légales</a> (exemple)</span>
+    <span><a href="#top">Instagram</a> · <a href="#top">Facebook</a></span>
+  </div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
