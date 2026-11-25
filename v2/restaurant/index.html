@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zinc Express — Plats maison à emporter, prêts en 10 min (site de démonstration)</title>
+<meta name="description" content="Zinc Express, bistrot minute fictif à Saint-Aubrelle : plats maison, formules dès 9,90 €, commande en un clic. Site de démonstration.">
+<meta name="theme-color" content="#e11d2a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ctext y='8.5' font-size='9'%3E%F0%9F%8D%94%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/bricolage-grotesque@5.3.0/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/instrument-sans@5.3.0/index.css">
+<link rel="stylesheet" href="style.css">
+<script>if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rm')</script>
+</head>
+<body>
+<a class="skip" href="#menu">Aller au menu</a>
+<div class="demo-bar">Site de démonstration — commerce fictif</div>
+<header class="top">
+  <a class="logo" href="#accueil">ZINC<em>EXPRESS</em></a>
+  <nav aria-label="Navigation principale"><a href="#formules">Formules</a><a href="#menu">Menu</a><a href="#avis">Avis</a><a href="#infos">Infos</a></nav>
+  <a class="btn cta btn-sm" href="#menu"><span>Commander</span></a>
+</header>
+<main>
+<section class="hero" id="accueil">
+  <div class="hero-text">
+    <p class="chip">Prêt en 10 min · à emporter</p>
+    <h1><span class="ln">Faim ?</span><span class="ln y">C'est prêt.</span></h1>
+    <p class="lead">Des plats maison, des formules dès <b>9,90 €</b>, retirés en 10 minutes à Saint-Aubrelle.</p>
+    <p class="hero-cta"><a class="btn cta big pulse" href="#menu"><span>Commander maintenant</span></a> <a class="btn ghost-l" href="tel:+33000000000"><span>☎ 00 00 00 00 00</span></a></p>
+    <ul class="hero-pts"><li>Prix TTC affichés</li><li>Paiement au retrait</li><li>Annulation gratuite</li></ul>
+  </div>
+  <div class="hero-vis" aria-hidden="true">
+    <div class="plate" data-par="0.12"><img src="photos/plat1.webp" alt="" width="800" height="600"></div>
+    <div class="stamp" data-par="-0.08"><b>9,90 €</b><span>la formule solo</span></div>
+    <div class="plate2" data-par="0.2"><img src="photos/plat3.webp" alt="" width="800" height="600"></div>
+  </div>
+</section>
+<div class="band" aria-label="Nos engagements"><div class="mq"><div class="mq-t">
+  <span>Prêt en 10 min</span><span>Formules dès 9,90 €</span><span>Fait maison</span><span>Paiement au retrait</span>
+  <span aria-hidden="true">Prêt en 10 min</span><span aria-hidden="true">Formules dès 9,90 €</span><span aria-hidden="true">Fait maison</span><span aria-hidden="true">Paiement au retrait</span>
+</div></div></div>
+
+<section class="sec" id="formules">
+  <div class="wrap">
+    <h2 class="rv">Les formules</h2>
+    <p class="sub rv">Plat + boisson (+ dessert) à prix fixe. Le prix affiché est le prix payé.</p>
+    <div class="combos">
+      <article class="combo rv" data-id="solo" data-name="Formule Solo" data-price="9.90"><p class="tag">Midi</p><h3>Solo</h3><p class="d">1 plat au choix + 1 boisson</p><p class="pr">9,90 €</p><button class="btn cta add" type="button"><span>Ajouter</span></button></article>
+      <article class="combo hot rv" data-id="duo" data-name="Formule Duo" data-price="17.90"><p class="tag">Le + choisi</p><h3>Duo</h3><p class="d">2 plats + 2 boissons + 1 dessert à partager</p><p class="pr">17,90 €</p><button class="btn cta add" type="button"><span>Ajouter</span></button></article>
+      <article class="combo rv" data-id="famille" data-name="Formule Famille" data-price="32.90"><p class="tag">4 personnes</p><h3>Famille</h3><p class="d">4 plats + 4 boissons + 2 desserts</p><p class="pr">32,90 €</p><button class="btn cta add" type="button"><span>Ajouter</span></button></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="menu">
+  <div class="wrap">
+    <h2 class="rv">Le menu</h2>
+    <p class="sub rv">Touchez « Ajouter » : la commande se prépare en bas de l'écran.</p>
+    <div class="cards">
+      <article class="card rv" data-id="poisson" data-name="Poisson grillé" data-price="10.90"><div class="ph"><img src="photos/plat1.webp" alt="Poisson grillé et pâtes" width="800" height="600" loading="lazy"></div><div class="cb"><h3>Poisson grillé</h3><p>Filet du jour, pâtes fraîches.</p><p class="row"><b class="pr">10,90 €</b><button class="btn cta add" type="button"><span>Ajouter</span></button></p></div></article>
+      <article class="card rv" data-id="galette" data-name="Galette saumon" data-price="8.90"><div class="ph"><img src="photos/plat3.webp" alt="Galette de pomme de terre au saumon fumé" width="800" height="600" loading="lazy"></div><div class="cb"><h3>Galette saumon</h3><p>Pomme de terre dorée, saumon fumé.</p><p class="row"><b class="pr">8,90 €</b><button class="btn cta add" type="button"><span>Ajouter</span></button></p></div></article>
+      <article class="card rv" data-id="champi" data-name="Poêlée champignons" data-price="7.90"><div class="ph"><img src="photos/plat2.webp" alt="Poêlée de champignons et croûtons" width="800" height="600" loading="lazy"></div><div class="cb"><h3>Poêlée champignons <small class="veg">veggie</small></h3><p>Champignons, céleri, pain grillé.</p><p class="row"><b class="pr">7,90 €</b><button class="btn cta add" type="button"><span>Ajouter</span></button></p></div></article>
+      <article class="card rv" data-id="gateau" data-name="Gâteau chocolat" data-price="3.90"><div class="ph"><img src="photos/dessert1.webp" alt="Gâteau au chocolat et crème" width="800" height="600" loading="lazy"></div><div class="cb"><h3>Gâteau chocolat</h3><p>Fait maison, crème à part.</p><p class="row"><b class="pr">3,90 €</b><button class="btn cta add" type="button"><span>Ajouter</span></button></p></div></article>
+      <article class="card plain rv" data-id="frites" data-name="Frites maison" data-price="3.50"><div class="ph big">3,50 €</div><div class="cb"><h3>Frites maison</h3><p>Coupées chaque matin.</p><p class="row"><b class="pr">3,50 €</b><button class="btn cta add" type="button"><span>Ajouter</span></button></p></div></article>
+      <article class="card plain y rv" data-id="boisson" data-name="Boisson fraîche" data-price="2.50"><div class="ph big">2,50 €</div><div class="cb"><h3>Boisson fraîche</h3><p>Soda, jus ou eau pétillante.</p><p class="row"><b class="pr">2,50 €</b><button class="btn cta add" type="button"><span>Ajouter</span></button></p></div></article>
+    </div>
+    <p class="note rv">Photos d'illustration libres de droits ; prix fictifs pour la maquette. Allergènes affichés sur place.</p>
+  </div>
+</section>
+
+<section class="sec proof" id="avis" aria-labelledby="av">
+  <div class="wrap">
+    <p class="ex rv">Exemple fictif de maquette : chiffres et avis à remplacer par les vrais</p>
+    <h2 id="av" class="rv">Ils reviennent, pas pour rien</h2>
+    <ul class="nums rv"><li><b data-n="4.8">4,8/5</b><span>note moyenne, 320 avis <em>(exemple)</em></span></li><li><b>10 min</b><span>temps moyen de préparation <em>(exemple)</em></span></li><li><b>9,90 €</b><span>formule solo, prix tout compris</span></li></ul>
+    <div class="pgrid">
+      <div class="rv"><blockquote><p>« Rapide, chaud, copieux. Ma pause midi du mardi. »</p><cite>Karim, Saint-Aubrelle · avis d'exemple</cite></blockquote><blockquote><p>« La formule Duo à deux, on a tout mangé. »</p><cite>Emma, Saint-Aubrelle · avis d'exemple</cite></blockquote></div>
+      <div class="offer rv"><h3>Offre du moment <small>(exemple)</small></h3><p>Formule Solo à 9,90 € du mardi au vendredi, jusqu'à 14 h. Dessert offert avec le Duo cette semaine.</p><p class="urg">Commande avant 11 h 30 : prêt pour 12 h <em>(exemple)</em></p>
+        <ul class="rea"><li>Prix TTC, sans supplément</li><li>Paiement au retrait : carte ou espèces</li><li>Annulation gratuite avant préparation</li></ul>
+        <form class="qf" novalidate><label>Prénom<input name="p" autocomplete="given-name" required></label><label>Téléphone<input name="t" type="tel" inputmode="tel" autocomplete="tel" required></label><button class="btn cta" type="submit"><span>Être rappelé pour commander</span></button><p class="msg" role="status" aria-live="polite"></p></form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="infos">
+  <div class="wrap two">
+    <div class="rv"><h2>Horaires</h2><table class="hours"><caption class="sr">Horaires d'ouverture</caption><tr><th>Mardi – Vendredi</th><td>11 h 30 – 14 h 30 · 18 h – 21 h 30</td></tr><tr><th>Samedi</th><td>11 h 30 – 22 h</td></tr><tr><th>Dimanche</th><td>11 h 30 – 15 h</td></tr><tr><th>Lundi</th><td>Fermé</td></tr></table></div>
+    <div class="rv"><h2>Retrait</h2><address>8 place du Marché, 00000 Saint-Aubrelle<br><em>(adresse fictive)</em></address><p>Téléphone : <a href="tel:+33000000000">00 00 00 00 00</a> <em>(numéro fictif)</em></p><p><a class="btn cta" href="#menu"><span>Commander</span></a></p></div>
+  </div>
+</section>
+</main>
+<footer><p>Zinc Express — site de démonstration, commerce fictif. Photos : voir photos/SOURCES.md.</p></footer>
+
+<div class="cartbar" id="cartbar">
+  <a class="btn call" href="tel:+33000000000"><span>☎ Appeler</span></a>
+  <button class="btn cta" id="order" type="button"><span id="ordtxt">Commander · 0,00 €</span></button>
+  <p class="cmsg" id="cmsg" role="status" aria-live="polite"></p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

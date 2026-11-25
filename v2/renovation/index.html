@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="fr" class="js-loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier Chaux-Vive — Peinture &amp; rénovation à Mont-Azuré (site de démonstration)</title>
+<meta name="description" content="Atelier Chaux-Vive, entreprise fictive de peinture et rénovation à Mont-Azuré : réalisations avant/après, étapes d'un chantier, devis détaillé, garanties. Site de démonstration.">
+<meta name="theme-color" content="#f7f2ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ctext y='8.5' font-size='9'%3E%F0%9F%8E%A8%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5/latin-400-italic.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/dm-sans@5/index.css">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Classes de contexte, avant tout rendu : mouvement réduit, écran tactile.
+  (function () {
+    var h = document.documentElement;
+    h.classList.remove('js-loading'); h.classList.add('js');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('rm');
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) h.classList.add('fine');
+  })();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"}}</script>
+</head>
+<body>
+<a class="skip" href="#devis">Aller à la demande de devis</a>
+
+<!-- Ouverture : un rouleau 3D peint l'écran et révèle le nom -->
+<div id="intro" aria-hidden="true">
+  <div class="paint"><i class="pb pb0"></i><i class="pb pb1"></i><i class="pb pb2"></i></div>
+  <p class="intro-kicker"><span>Peinture</span><span>·</span><span>Rénovation</span><span>·</span><span>Mont-Azuré</span></p>
+  <h2 class="intro-title"><span class="it-l1">Atelier</span><span class="it-l2">Chaux-Vive</span></h2>
+  <div class="intro-stage" data-view="intro"></div>
+  <button type="button" class="intro-skip">Passer <span aria-hidden="true">→</span></button>
+</div>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="roll-progress" id="prog" aria-hidden="true"><i></i></div>
+
+<div class="demo-bar">Site de démonstration — commerce fictif</div>
+
+<header class="top">
+  <a class="logo" href="#accueil">Atelier <em>Chaux-Vive</em></a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span></button>
+  <nav id="menu" aria-label="Navigation principale">
+    <a href="#couches">Méthode</a><a href="#prestations">Travaux</a><a href="#realisations">Avant / après</a><a href="#etapes">Votre chantier</a><a href="#garanties">Garanties</a><a href="#zone">Zone</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-sm cta" href="#devis"><span>Devis gratuit</span></a>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-text">
+    <p class="kicker" data-a="fade">Peinture &amp; rénovation · Mont-Azuré</p>
+    <h1 class="hero-title"><span class="ln"><span>Des murs qui</span></span><span class="ln"><span>changent <em>tout,</em></span></span><span class="ln"><span>des chantiers propres.</span></span></h1>
+    <p class="hero-lead" data-a="fade">Peinture, enduits, façades et rénovation d'intérieur. Devis détaillé gratuit, planning tenu, garanties écrites.</p>
+    <p class="hero-cta" data-a="fade"><a class="btn cta" href="#devis"><span>Demander un devis détaillé</span></a> <a class="btn ghost" href="#realisations"><span>Voir les avant / après</span></a></p>
+  </div>
+  <div class="hero-photo" data-parallax>
+    <img src="photos/facade.webp" alt="Nacelle élévatrice devant une façade peinte" width="800" height="600">
+    <span class="swatches" aria-hidden="true"><i style="--c:#c4573a"></i><i style="--c:#e0a84a"></i><i style="--c:#6b8a5a"></i><i style="--c:#4a6f9a"></i><i style="--c:#d9cdb8"></i></span>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span>Défiler</span><i></i></div>
+</section>
+
+<section class="band" aria-label="Nos engagements">
+  <div class="marquee"><div class="mq-track">
+    <ul class="usp">
+      <li><strong>Devis détaillé</strong> poste par poste</li>
+      <li><strong>Chantier protégé</strong> et nettoyé chaque soir</li>
+      <li><strong>Peintures</strong> sans solvant, label A+</li>
+      <li><strong>Garantie décennale</strong> sur les travaux concernés</li>
+    </ul>
+    <ul class="usp" aria-hidden="true">
+      <li><strong>Devis détaillé</strong> poste par poste</li>
+      <li><strong>Chantier protégé</strong> et nettoyé chaque soir</li>
+      <li><strong>Peintures</strong> sans solvant, label A+</li>
+      <li><strong>Garantie décennale</strong> sur les travaux concernés</li>
+    </ul>
+  </div></div>
+</section>
+
+<section class="v2proof" id="preuves" aria-labelledby="v2t"><div class="wrap">
+<p class="ex v2r">Exemple fictif de maquette : chiffres et avis à remplacer par les vrais</p>
+<h2 id="v2t" class="h2 v2r">Lancez votre projet</h2>
+<ul class="v2nums v2r"><li><b>4,8/5</b><span>note moyenne, 74 avis <em>(exemple)</em></span></li><li><b>10 ans</b><span>garantie décennale sur le gros œuvre <em>(exemple)</em></span></li><li><b>48 h</b><span>devis détaillé après visite <em>(exemple)</em></span></li></ul>
+<div class="v2grid">
+<div class="v2r"><blockquote class="v2rev"><p>« Chantier propre, délais tenus, devis respecté au centime. »</p><cite>Famille Aubert, Mont-Azuré · avis d'exemple</cite></blockquote><blockquote class="v2rev"><p>« Salon et cuisine repeints en 4 jours, résultat impeccable. »</p><cite>Nadia L., Mont-Azuré · avis d'exemple</cite></blockquote></div>
+<div class="v2offer v2r"><h3>Ce mois-ci <small>(exemple)</small></h3><p>Visite et devis gratuits. Il reste 3 créneaux de visite cette semaine ; chantiers lancés sous 3 semaines.</p><p class="v2urg">Visites : 3 créneaux restants cette semaine <em>(exemple)</em></p>
+<ul class="v2rea"><li>Devis écrit, prix ferme</li><li>Acompte 30 % seulement à la commande</li><li>Paiement échelonné selon l'avancement</li></ul>
+<a class="btn cta" href="#devis"><span>Devis gratuit</span></a>
+<form class="v2form" novalidate><label>Prénom<input name="p" autocomplete="given-name" required></label><label>Téléphone<input name="t" type="tel" inputmode="tel" autocomplete="tel" required></label><button class="btn cta" type="submit"><span>Être rappelé pour une visite</span></button><p class="v2msg" role="status" aria-live="polite"></p></form></div>
+</div></div></section>
+
+
+<!-- MÉTHODE : truelle épinglée -->
+<section class="couches pin-sec" id="couches">
+  <div class="pin-in">
+    <div class="pin-stage" data-view="trowel"><div class="fallback" aria-hidden="true"><svg viewBox="0 0 200 120"><rect x="20" y="70" width="160" height="14" fill="#b9a98f"/><rect x="20" y="56" width="160" height="14" fill="#e6dcc9"/><rect x="20" y="42" width="160" height="14" fill="#f7f2ea" stroke="#ddd"/><rect x="20" y="28" width="160" height="14" fill="#c4573a"/></svg></div></div>
+    <div class="pin-text">
+      <p class="kicker">La méthode</p>
+      <h2 class="h2" data-a="lines">70 % du résultat<br>se joue sous la peinture.</h2>
+      <ol class="steps">
+        <li class="step on"><span class="num">01</span><h3>Rebouchage</h3><p>Fissures et trous comblés, supports lessivés et poncés : la base est saine.</p></li>
+        <li class="step"><span class="num">02</span><h3>Enduit</h3><p>Une couche d'enduit à la truelle, tirée à la règle, pour un mur parfaitement plan.</p></li>
+        <li class="step"><span class="num">03</span><h3>Sous-couche</h3><p>L'impression égalise le support et fait tenir la couleur.</p></li>
+        <li class="step"><span class="num">04</span><h3>Peinture</h3><p>Deux couches croisées, finitions soignées aux angles et aux plinthes.</p></li>
+      </ol>
+      <div class="steps-bar" aria-hidden="true"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAVAUX -->
+<section id="prestations" class="sec trav">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Nos travaux</p>
+      <h2 class="h2" data-a="chars">Ce qu'on peint, ce qu'on rénove</h2>
+      <p class="lead">Prix indicatifs pour la démonstration. Le devis gratuit fixe le prix exact après visite.</p>
+    </div>
+    <div class="cards" id="grid"></div>
+  </div>
+</section>
+
+<!-- AVANT / APRÈS -->
+<section id="realisations" class="sec ba-sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Réalisations</p>
+      <h2 class="h2" data-a="lines">Avant / après</h2>
+      <p class="lead">Les murs se repeignent sous vos yeux, puis tirez la poignée pour comparer. Exemples illustratifs avec des photos libres de droits : ce ne sont pas des chantiers réels de cette entreprise fictive.</p>
+    </div>
+    <div class="ba">
+      <figure class="cmp">
+        <div class="cmp-in" style="--x:50%">
+          <img class="after" src="photos/apres1.webp" alt="Après : salon aux murs clairs" width="800" height="600" loading="lazy">
+          <div class="before"><img src="photos/avant1.webp" alt="Avant : mur dont la peinture s'écaille" width="800" height="600" loading="lazy"></div>
+          <span class="tag t-b">Avant</span><span class="tag t-a">Après</span>
+          <span class="handle" aria-hidden="true"><i></i></span>
+          <input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après : salon">
+        </div>
+        <figcaption>Salon : rebouchage, sous-couche et deux couches de peinture</figcaption>
+      </figure>
+      <figure class="cmp">
+        <div class="cmp-in" style="--x:50%">
+          <img class="after" src="photos/apres2.webp" alt="Après : chambre lumineuse aux murs peints" width="800" height="600" loading="lazy">
+          <div class="before"><img src="photos/avant2.webp" alt="Avant : mur jaune craquelé" width="800" height="600" loading="lazy"></div>
+          <span class="tag t-b">Avant</span><span class="tag t-a">Après</span>
+          <span class="handle" aria-hidden="true"><i></i></span>
+          <input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après : chambre">
+        </div>
+        <figcaption>Chambre : préparation des supports et peinture mate</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ÉTAPES : mur de briques -->
+<section id="etapes" class="sec etapes">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Votre chantier</p>
+      <h2 class="h2" data-a="lines">Six étapes,<br>posées brique par brique.</h2>
+    </div>
+    <ol class="wall">
+      <li class="brick"><span class="bn">1</span><b>Visite &amp; devis</b><span>Nous venons mesurer, conseiller les teintes et chiffrer poste par poste. Gratuit, sous 48 h.</span></li>
+      <li class="brick"><span class="bn">2</span><b>Choix des couleurs</b><span>Nuancier, échantillons sur vos murs, validation écrite.</span></li>
+      <li class="brick"><span class="bn">3</span><b>Protection</b><span>Sols, meubles et menuiseries bâchés avant toute poussière.</span></li>
+      <li class="brick"><span class="bn">4</span><b>Préparation</b><span>Lessivage, rebouchage, ponçage, enduits : 70 % du résultat.</span></li>
+      <li class="brick"><span class="bn">5</span><b>Sous-couche &amp; peinture</b><span>Impression puis deux couches, finitions soignées aux angles.</span></li>
+      <li class="brick"><span class="bn">6</span><b>Nettoyage &amp; réception</b><span>Chantier nettoyé, tour du propriétaire, retouches éventuelles.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- DEVIS : nuancier -->
+<section id="devis" class="sec devis alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Gratuit · réponse sous 48 h</p>
+      <h2 class="h2" data-a="lines">Votre demande de<br>devis détaillé</h2>
+      <p class="lead">Plus vous nous en dites, plus le devis est précis. Chaque réponse remplit une pastille du nuancier ; l'estimation est indicative et ne remplace pas la visite.</p>
+    </div>
+    <div class="devis-grid">
+      <aside class="nuancier" aria-label="Nuancier de votre demande">
+        <ul class="sw-list" id="sw-list"></ul>
+        <div class="estim" aria-live="polite"><span>Estimation indicative</span><strong id="estim">—</strong></div>
+      </aside>
+
+      <form id="order" novalidate>
+        <fieldset class="fs" data-sw="0"><legend><span class="n">1</span> Type de bien</legend>
+          <div class="chips" id="bien" role="radiogroup" aria-label="Type de bien">
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Appartement">Appartement</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Maison">Maison</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Local professionnel">Local professionnel</button>
+          </div>
+        </fieldset>
+        <fieldset class="fs" data-sw="1"><legend><span class="n">2</span> Travaux souhaités</legend>
+          <div class="chips" id="travaux" role="radiogroup" aria-label="Travaux souhaités"></div>
+        </fieldset>
+        <fieldset class="fs" data-sw="2"><legend><span class="n">3</span> Surface à traiter</legend>
+          <label class="fld"><span>Surface (m²)</span><input type="number" id="surface" min="5" max="1000" inputmode="numeric" placeholder="ex. 60"></label>
+        </fieldset>
+        <fieldset class="fs" data-sw="3"><legend><span class="n">4</span> Pièces concernées</legend>
+          <div class="chips" id="pieces" aria-label="Pièces concernées">
+            <button type="button" class="chip" role="checkbox" aria-checked="false" data-v="séjour">Séjour</button>
+            <button type="button" class="chip" role="checkbox" aria-checked="false" data-v="chambres">Chambres</button>
+            <button type="button" class="chip" role="checkbox" aria-checked="false" data-v="cuisine">Cuisine</button>
+            <button type="button" class="chip" role="checkbox" aria-checked="false" data-v="salle de bains">Salle de bains</button>
+            <button type="button" class="chip" role="checkbox" aria-checked="false" data-v="escalier / couloirs">Escalier / couloirs</button>
+          </div>
+        </fieldset>
+        <fieldset class="fs" data-sw="4"><legend><span class="n">5</span> État des murs</legend>
+          <div class="chips" id="etat" role="radiogroup" aria-label="État actuel des murs">
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Bon état">Bon état</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Fissures ou trous à reboucher">Fissures ou trous</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Ancien papier peint à retirer">Papier peint à retirer</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Humidité ou salissures">Humidité, salissures</button>
+          </div>
+        </fieldset>
+        <fieldset class="fs" data-sw="5"><legend><span class="n">6</span> Début souhaité</legend>
+          <div class="chips" id="delai" role="radiogroup" aria-label="Début souhaité">
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Dès que possible">Dès que possible</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Sous 1 mois">Sous 1 mois</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Dans 2 à 3 mois">Dans 2 à 3 mois</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Pas pressé">Pas pressé</button>
+          </div>
+          <label class="fld" style="margin-top:16px"><span>Remarques</span><textarea id="note" rows="2" placeholder="Teintes souhaitées, contraintes d'accès…"></textarea></label>
+        </fieldset>
+        <fieldset class="fs" data-sw="6"><legend><span class="n">7</span> Vos coordonnées</legend>
+          <div class="fields">
+            <label class="fld"><span>Nom</span><input type="text" id="nom" autocomplete="name"></label>
+            <label class="fld"><span>Téléphone</span><input type="tel" id="tel" placeholder="00 00 00 00 00"></label>
+            <label class="fld"><span>Code postal</span><input type="text" id="cp" inputmode="numeric" maxlength="5" placeholder="00000"></label>
+          </div>
+        </fieldset>
+        <button class="btn cta" id="valider" type="submit"><span>Envoyer ma demande (démo)</span></button>
+        <p id="msg" role="status"></p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <div class="done-stage" data-view="wall"><div class="fallback" aria-hidden="true"><svg viewBox="0 0 160 100"><rect x="10" y="10" width="140" height="80" fill="#c4573a"/></svg></div></div>
+        <div class="recap" tabindex="-1">
+          <p class="kicker">Demande reçue</p>
+          <h3 class="h3">Votre mur est prêt à être peint.</h3>
+          <dl id="recap-list"></dl>
+          <p class="recap-demo"><strong>Démo : aucune demande réelle envoyée.</strong></p>
+          <button type="button" class="btn ghost" id="again"><span>Nouvelle demande</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIES : cartes de nuancier -->
+<section id="garanties" class="sec garanties">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Nos garanties</p>
+      <h2 class="h2" data-a="chars">Écrit, signé, tenu.</h2>
+    </div>
+    <div class="plans four">
+      <article class="plan" style="--c:#c4573a"><h3>Décennale</h3><p>10 ans sur les travaux qui touchent à la solidité ou à l'étanchéité (ravalement, enduits d'imperméabilité).</p><p><em>[assureur, n° de contrat à compléter]</em></p></article>
+      <article class="plan" style="--c:#e0a84a"><h3>Parfait achèvement</h3><p>1 an : nous reprenons tout défaut signalé après la réception.</p></article>
+      <article class="plan" style="--c:#6b8a5a"><h3>Biennale</h3><p>2 ans sur les éléments dissociables (menuiseries peintes, équipements).</p></article>
+      <article class="plan" style="--c:#4a6f9a"><h3>Satisfaction</h3><p>Retouches gratuites pendant 30 jours après la réception du chantier.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section id="zone" class="sec zone alt">
+  <div class="wrap split">
+    <div>
+      <p class="kicker">Rayon de 30 km</p>
+      <h2 class="h2" data-a="lines">Zone d'intervention</h2>
+      <p>Nous nous déplaçons dans un rayon de 30 km autour de Mont-Azuré (communes fictives) :</p>
+      <ul class="towns"><li>Mont-Azuré</li><li>Pierrefeu-sur-Lys</li><li>Saint-Gélas</li><li>Ormevaux</li><li>Les Bruyères-Hautes</li><li>Villeneuve-la-Craie</li><li>Combe-Rousse</li><li>Aubrac-le-Petit</li></ul>
+      <p><small>Chantier hors zone : déplacement sur devis.</small></p>
+    </div>
+    <svg class="map" viewBox="0 0 300 240" role="img" aria-label="Schéma de la zone d'intervention : un cercle de 30 km autour de Mont-Azuré">
+      <rect width="300" height="240" rx="16" fill="#efe6d9"/>
+      <circle class="zone-disc" cx="150" cy="120" r="98" fill="#c4573a" fill-opacity=".14" stroke="#c4573a" stroke-width="2.5" stroke-dasharray="8 6"/>
+      <circle class="ring r1" cx="150" cy="120" r="20" fill="none" stroke="#c4573a" stroke-width="1.5"/>
+      <circle class="ring r2" cx="150" cy="120" r="20" fill="none" stroke="#c4573a" stroke-width="1.5"/>
+      <g class="towns-dots" fill="#4a5d41"><circle cx="98" cy="76" r="4"/><circle cx="210" cy="64" r="4"/><circle cx="228" cy="138" r="4"/><circle cx="96" cy="162" r="4"/><circle cx="176" cy="186" r="4"/><circle cx="130" cy="38" r="4"/><circle cx="62" cy="118" r="4"/></g>
+      <circle cx="150" cy="120" r="7" fill="#2e2a26"/><text x="150" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#2e2a26" font-family="system-ui">Mont-Azuré</text>
+      <text x="150" y="16" text-anchor="middle" font-size="11" fill="#7a6f64" font-family="system-ui">30 km</text>
+    </svg>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="sec avis">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2" data-a="chars">Ils nous ont confié leurs murs</h2>
+      <p class="lead">Avis d'exemple, rédigés pour la démonstration.</p>
+    </div>
+    <div class="reviews">
+      <blockquote class="rev"><p>« Appartement repeint en 5 jours, rien à reprendre, très propre. »</p><cite>— Camille F. · exemple</cite><span class="wash" aria-hidden="true"></span></blockquote>
+      <blockquote class="rev"><p>« Le devis détaillé nous a évité toute mauvaise surprise. »</p><cite>— Éric &amp; Laure T. · exemple</cite><span class="wash" aria-hidden="true"></span></blockquote>
+      <blockquote class="rev"><p>« Façade refaite, la maison a rajeuni de vingt ans. »</p><cite>— M. Delorme · exemple</cite><span class="wash" aria-hidden="true"></span></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact alt">
+  <div class="wrap split">
+    <div>
+      <h2 class="h2" data-a="lines">Horaires &amp; adresse</h2>
+      <p class="open-now" id="open-now"><i></i><span>—</span></p>
+      <table class="hours"><caption class="sr">Horaires</caption>
+        <tr data-d="1,2,3,4,5"><th>Atelier / accueil</th><td>Lundi – vendredi, 8 h – 17 h 30</td></tr>
+        <tr data-d="6"><th>Visites de devis</th><td>Sur rendez-vous, aussi le samedi matin</td></tr></table>
+      <address>3 impasse des Pigments, 00000 Mont-Azuré<br><em>(adresse fictive)</em></address>
+      <p><a class="link" href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Voir sur la carte (lien à remplacer)</a></p>
+    </div>
+    <div>
+      <h2 class="h2" data-a="lines">Contact</h2>
+      <p>Téléphone : <a class="link" href="tel:+33000000000">00 00 00 00 00</a> <em>(numéro fictif)</em></p>
+      <p>Courriel : <a class="link" href="mailto:devis@exemple.invalid">devis@exemple.invalid</a> <em>(adresse fictive)</em></p>
+      <p>Assurances et qualifications : <em>[à compléter avant mise en ligne]</em></p>
+      <p class="big-cta"><a class="btn cta" href="#devis"><span>Demander un devis</span></a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="foot-brand serif">Atelier <em>Chaux-Vive</em></p>
+  <p><strong>Site de démonstration — commerce fictif.</strong> Atelier Chaux-Vive n'existe pas ; aucune demande réelle, aucun chantier.</p>
+  <details><summary>Mentions légales (à remplir)</summary>
+    <p>Éditeur : [raison sociale] — [forme juridique] — SIRET [à compléter]<br>Adresse : [à compléter] · Directeur de la publication : [à compléter]<br>Hébergeur : [nom, adresse] · Données personnelles : [politique à rédiger]<br>Photos : licence CC0, voir <a href="photos/SOURCES.md">sources</a>.</p>
+  </details>
+</footer>
+<div class="demo-bar bottom">Site de démonstration — commerce fictif</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
+<script type="module" src="scene.js"></script>
+<nav class="sbar" aria-label="Actions rapides"><a class="btn cta" href="tel:+33000000000"><span>☎ Appeler</span></a><a class="btn cta" href="#devis"><span>Devis gratuit</span></a></nav>
+<script>
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});document.querySelectorAll('.v2r').forEach(function(n){io.observe(n)});
+document.querySelectorAll('.v2form').forEach(function(f){f.addEventListener('submit',function(ev){ev.preventDefault();var m=f.querySelector('.v2msg'),p=f.p.value.trim(),t=f.t.value.replace(/\D/g,'');m.textContent=(!p||t.length<10)?'Indiquez votre prénom et un numéro à 10 chiffres.':'Démonstration : rien n\'est envoyé. Sur un vrai site, vous seriez rappelé(e) rapidement.'})})})();
+</script>
+</body>
+</html>
