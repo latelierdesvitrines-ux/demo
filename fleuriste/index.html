@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr" class="js-loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maison Brindelune — Fleuriste artisan (site de démonstration)</title>
+<meta name="description" content="Maison Brindelune, fleuriste artisan fictif : bouquets de saison, mariages, abonnements entreprises. Site de démonstration.">
+<meta name="theme-color" content="#fbf3ee">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ctext y='8.5' font-size='9'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/cormorant@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/cormorant@5/wght-italic.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/jost@5/index.css">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Classes de contexte, avant tout rendu : mouvement réduit, écran tactile.
+  (function () {
+    var h = document.documentElement;
+    h.classList.remove('js-loading'); h.classList.add('js');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('rm');
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) h.classList.add('fine');
+  })();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"}}</script>
+</head>
+<body>
+<a class="skip" href="#catalogue">Aller aux bouquets</a>
+
+<!-- Ouverture : le bouquet éclot, les pétales forment le nom -->
+<div id="intro" aria-hidden="true">
+  <p class="intro-kicker"><span>Fleuriste artisan</span><span>·</span><span>Val-de-Rose</span></p>
+  <h2 class="intro-title"><span class="it-l1">Maison</span><span class="it-l2">Brindelune</span></h2>
+  <div class="intro-stage" data-view="intro"></div>
+  <button type="button" class="intro-skip">Passer <span aria-hidden="true">→</span></button>
+</div>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="stem" id="prog" aria-hidden="true"></div>
+
+<div class="demo-bar">Site de démonstration — commerce fictif</div>
+
+<header class="top">
+  <a class="logo" href="#accueil">Maison <em>Brindelune</em></a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span></button>
+  <nav id="menu" aria-label="Navigation principale">
+    <a href="#catalogue">Bouquets</a><a href="#panier">Panier</a><a href="#mariages">Mariages</a><a href="#entreprises">Entreprises</a><a href="#atelier">L'atelier</a><a href="#avis">Avis</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-sm" href="#panier" id="open-cart" aria-label="Voir le panier"><span>Panier <b id="cart-count">0</b></span></a>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-text">
+    <p class="kicker" data-a="fade">Fleuriste artisan · Val-de-Rose</p>
+    <h1 class="hero-title"><span class="ln"><span>Des fleurs de saison,</span></span><span class="ln"><span><em>composées</em> à la main.</span></span></h1>
+    <p class="hero-lead" data-a="fade">Bouquets du jour, mariages, abonnements pour les entreprises. Retrait en boutique ou livraison le jour même.</p>
+    <p class="hero-cta" data-a="fade"><a class="btn" href="#catalogue"><span>Voir les bouquets</span></a> <a class="btn ghost" href="#mariages"><span>Mariages &amp; événements</span></a></p>
+  </div>
+  <div class="hero-photo" data-parallax>
+    <img src="photos/champetre.webp" alt="Bouquet de roses crème et feuillage tenu à la main" width="800" height="1000">
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span>Défiler</span><i></i></div>
+</section>
+
+<section class="band" aria-label="Nos engagements">
+  <div class="marquee"><div class="mq-track">
+    <ul class="usp">
+      <li><strong>Fleurs fraîches</strong> livrées chaque matin</li>
+      <li><strong>Livraison</strong> le jour même avant 14 h</li>
+      <li><strong>Composé main</strong> dans notre atelier</li>
+      <li><strong>Carte message</strong> offerte</li>
+    </ul>
+    <ul class="usp" aria-hidden="true">
+      <li><strong>Fleurs fraîches</strong> livrées chaque matin</li>
+      <li><strong>Livraison</strong> le jour même avant 14 h</li>
+      <li><strong>Composé main</strong> dans notre atelier</li>
+      <li><strong>Carte message</strong> offerte</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- BOUQUETS : papier kraft qui s'ouvre + fleur 3D -->
+<section id="catalogue" class="sec cat">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Nos bouquets</p>
+      <h2 class="h2" data-a="grow">Huit compositions signature</h2>
+      <p class="lead">Renouvelées avec les saisons. Ajoutez-les au panier : c'est une démonstration, rien n'est réellement commandé. Survolez ou touchez un bouquet : la fleur s'ouvre.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="bq-list" id="grid"></div>
+      <div class="bloom-col">
+        <div class="bloom-stage" data-view="bloom"><div class="fallback" aria-hidden="true"><svg viewBox="0 0 120 120"><g fill="#e98fa8"><ellipse cx="60" cy="28" rx="14" ry="26"/><ellipse cx="60" cy="92" rx="14" ry="26"/><ellipse cx="28" cy="60" rx="26" ry="14"/><ellipse cx="92" cy="60" rx="26" ry="14"/></g><circle cx="60" cy="60" r="12" fill="#f5c04a"/></svg></div>
+          <div class="bloom-label" aria-live="polite"><span class="bl-name">Prairie d’été</span><span class="bl-price">39,00 €</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PANIER : panier d'osier + colis ficelé -->
+<section id="panier" class="sec pan alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Votre panier</p>
+      <h2 class="h2" data-a="lines" id="pan-title">Un panier plein<br>de pétales</h2>
+      <p class="lead">Chaque bouquet ajouté fait tomber des pétales dans le panier. Choisissez retrait ou livraison : à la validation, un ruban noue le paquet. Démonstration : rien n'est envoyé ni payé.</p>
+    </div>
+    <div class="pan-grid">
+      <div class="basket-col">
+        <div class="basket-stage" data-view="basket"><div class="fallback" aria-hidden="true"><svg viewBox="0 0 140 110"><path d="M20 50 H120 L108 98 H32 Z" fill="#b98a55"/><circle cx="50" cy="44" r="12" fill="#e98fa8"/><circle cx="76" cy="40" r="13" fill="#f4c5d3"/><circle cx="98" cy="46" r="11" fill="#f5c04a"/></svg></div></div>
+        <p class="basket-read"><b id="bk-n">0</b> <span id="bk-txt">bouquet</span> · <strong id="bk-total">0,00 €</strong></p>
+      </div>
+
+      <form id="order" novalidate>
+        <fieldset class="fs"><legend><span class="n">1</span> Vos bouquets</legend>
+          <ul id="cart-lines" class="lines"></ul>
+          <p class="empty" id="cart-empty">Votre panier est vide : choisissez un bouquet plus haut.</p>
+          <a class="btn ghost btn-sm" href="#catalogue"><span>← Choisir un bouquet</span></a>
+        </fieldset>
+        <fieldset class="fs"><legend><span class="n">2</span> Réception</legend>
+          <div class="chips" id="mode" role="radiogroup" aria-label="Mode de réception">
+            <button type="button" class="chip" role="radio" aria-checked="true" data-v="retrait">Retrait en boutique <small>gratuit</small></button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="livraison">Livraison <small>+ 8 €</small></button>
+          </div>
+          <div class="fields" style="margin-top:16px">
+            <label class="fld"><span>Jour</span><input type="date" id="jour"></label>
+            <label class="fld"><span>Créneau</span><select id="creneau"><option>9 h – 12 h</option><option>12 h – 15 h</option><option>15 h – 19 h</option></select></label>
+          </div>
+          <label class="fld liv-only" id="adr-box" hidden><span>Adresse de livraison</span><input type="text" id="adr" autocomplete="street-address" placeholder="ex. 3 rue des Lilas, 00000 Val-de-Rose"></label>
+        </fieldset>
+        <fieldset class="fs"><legend><span class="n">3</span> Vos coordonnées</legend>
+          <div class="fields">
+            <label class="fld"><span>Nom</span><input type="text" id="nom" autocomplete="name"></label>
+            <label class="fld"><span>Téléphone</span><input type="tel" id="tel" placeholder="00 00 00 00 00"></label>
+          </div>
+          <label class="fld" style="margin-top:14px"><span>Message sur la carte (offerte)</span><input type="text" id="note" placeholder="Pour toi, avec tendresse"></label>
+        </fieldset>
+        <p class="total">Total : <strong id="cart-total">0,00 €</strong></p>
+        <button class="btn" id="valider" type="submit"><span>Valider (démo)</span></button>
+        <p id="msg" role="status"></p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <div class="done-stage" data-view="parcel"><div class="fallback" aria-hidden="true"><svg viewBox="0 0 120 100"><rect x="20" y="30" width="80" height="55" fill="#c9a577"/><rect x="55" y="30" width="10" height="55" fill="#c2506b"/><rect x="20" y="52" width="80" height="10" fill="#c2506b"/></svg></div></div>
+        <div class="recap" tabindex="-1">
+          <p class="kicker">Paquet noué</p>
+          <h3 class="h3" id="done-title">Votre colis est prêt.</h3>
+          <dl id="recap-list"></dl>
+          <p class="recap-demo"><strong>Démo : aucune demande réelle envoyée.</strong></p>
+          <button type="button" class="btn ghost" id="again"><span>Nouvelle commande</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARIAGES -->
+<section id="mariages" class="sec mar">
+  <div class="wrap split">
+    <div class="gal">
+      <div class="gimg g1"><img src="photos/mariage1.webp" alt="Bouquet de mariée blanc et crème posé sur une robe" width="800" height="600" loading="lazy"></div>
+      <div class="gimg g2"><img src="photos/mariage2.webp" alt="Bouquet rond de roses roses" width="800" height="800" loading="lazy"></div>
+    </div>
+    <div>
+      <p class="kicker">Mariages &amp; événements</p>
+      <h2 class="h2" data-a="lines">Le plus beau jour<br>mérite des fleurs<br>sur mesure</h2>
+      <p>Bouquet de la mariée, boutonnières, arche, centres de table : nous dessinons avec vous une ambiance, puis nous la réalisons.</p>
+      <ul class="ticks"><li>Rendez-vous découverte offert (45 min)</li><li>Devis détaillé sous 48 h</li><li>Installation sur place le jour J</li><li>Formules à partir de <strong>390 €</strong></li></ul>
+      <a class="btn" href="#contact"><span>Demander un devis</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREPRISES -->
+<section id="entreprises" class="sec ent alt">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="kicker">Entreprises, hôtels, restaurants</p>
+      <h2 class="h2" data-a="grow">L'abonnement fleurs, sans y penser</h2>
+    </div>
+    <div class="plans">
+      <article class="plan"><span class="tagstring" aria-hidden="true"></span><h3>Accueil</h3><p class="price"><span class="pr-val" data-v="89">89 €</span> <small>/ mois</small></p><p>1 composition par semaine pour votre accueil ou comptoir.</p></article>
+      <article class="plan pop"><p class="badge">Le plus choisi</p><span class="tagstring" aria-hidden="true"></span><h3>Équipe</h3><p class="price"><span class="pr-val" data-v="159">159 €</span> <small>/ mois</small></p><p>2 compositions par semaine, remplacement des fleurs fanées inclus.</p></article>
+      <article class="plan"><span class="tagstring" aria-hidden="true"></span><h3>Sur mesure</h3><p class="price">Sur devis</p><p>Plusieurs sites, plantes vertes, décors d'événements.</p></article>
+    </div>
+    <p class="center"><a class="btn" href="#contact"><span>Être rappelé</span></a></p>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section id="atelier" class="sec atel">
+  <div class="wrap split flip">
+    <div>
+      <p class="kicker">L'atelier</p>
+      <h2 class="h2" data-a="lines">Un savoir-faire<br>de fleuriste,<br>à la main</h2>
+      <p>Chaque matin, nous choisissons les fleurs auprès de producteurs régionaux. Conditionnées, effeuillées, tressées à la main : pas de formule toute faite.</p>
+      <ul class="ticks"><li>Fleurs de saison et de proximité</li><li>Emballage en papier kraft, sans plastique</li><li>Conseils d'entretien joints à chaque bouquet</li></ul>
+    </div>
+    <div class="gal">
+      <div class="gimg g1"><img src="photos/atelier1.webp" alt="Étal de fleurs devant la boutique" width="800" height="533" loading="lazy"></div>
+      <div class="gimg g2"><img src="photos/atelier2.webp" alt="Bouquets de gypsophile emballés dans du papier kraft" width="800" height="533" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="sec avis alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2" data-a="grow">Ils nous font confiance</h2>
+      <p class="lead">Avis d'exemple, rédigés pour la démonstration.</p>
+    </div>
+    <div class="reviews">
+      <blockquote class="rev"><p>« Un bouquet magnifique, livré à l'heure. Ma mère était ravie. »</p><cite>— Claire D. · exemple</cite></blockquote>
+      <blockquote class="rev"><p>« Notre mariage était exactement comme dans notre tête, merci ! »</p><cite>— Julie &amp; Marc · exemple</cite></blockquote>
+      <blockquote class="rev"><p>« L'abonnement de l'accueil change l'ambiance du cabinet. »</p><cite>— Dr R. · exemple</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap split">
+    <div>
+      <h2 class="h2" data-a="lines">Horaires &amp; adresse</h2>
+      <p class="open-now" id="open-now"><i></i><span>—</span></p>
+      <table class="hours"><caption class="sr">Horaires d'ouverture</caption>
+        <tr data-d="2,3,4,5"><th>Mardi – Vendredi</th><td>9 h – 19 h</td></tr>
+        <tr data-d="6"><th>Samedi</th><td>9 h – 19 h 30</td></tr>
+        <tr data-d="0"><th>Dimanche</th><td>9 h – 13 h</td></tr>
+        <tr data-d="1"><th>Lundi</th><td>Fermé</td></tr></table>
+      <address>12 rue des Lilas, 00000 Val-de-Rose<br><em>(adresse fictive)</em></address>
+      <p><a class="link" href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Voir sur la carte (lien à remplacer)</a></p>
+    </div>
+    <div>
+      <h2 class="h2" data-a="lines">Contact</h2>
+      <p>Téléphone : <a class="link" href="tel:+33000000000">00 00 00 00 00</a> <em>(numéro fictif)</em></p>
+      <p>Courriel : <a class="link" href="mailto:contact@exemple.invalid">contact@exemple.invalid</a> <em>(adresse fictive)</em></p>
+      <p>Réponse sous 24 h ouvrées. Pour un devis mariage, précisez la date et le nombre d'invités.</p>
+      <p class="big-cta"><a class="btn" href="#catalogue"><span>Voir les bouquets</span></a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="foot-brand serif">Maison <em>Brindelune</em></p>
+  <p><strong>Site de démonstration — commerce fictif.</strong> Maison Brindelune n'existe pas ; aucune commande réelle, aucun paiement.</p>
+  <details><summary>Mentions légales (à remplir)</summary>
+    <p>Éditeur : [raison sociale] — [forme juridique] — SIRET [à compléter]<br>Adresse : [à compléter] · Directeur de la publication : [à compléter]<br>Hébergeur : [nom, adresse] · Données personnelles : [politique à rédiger]<br>Photos : licence CC0, voir <a href="photos/SOURCES.md">sources</a>.</p>
+  </details>
+</footer>
+<div class="demo-bar bottom">Site de démonstration — commerce fictif</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
+<script type="module" src="scene.js"></script>
+</body>
+</html>

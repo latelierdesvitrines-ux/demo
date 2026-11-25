@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="fr" class="js-loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le Zinc de Marcelin — Bistrot de quartier (site de démonstration)</title>
+<meta name="description" content="Le Zinc de Marcelin, bistrot fictif à Saint-Aubrelle : cuisine du marché, formules midi, privatisation, réservation en ligne. Site de démonstration.">
+<meta name="theme-color" content="#17110d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ctext y='8.5' font-size='9'%3E%F0%9F%8D%B7%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/playfair-display@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/playfair-display@5/wght-italic.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/figtree@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/caveat@5/index.css">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Classes de contexte, avant tout rendu : mouvement réduit, écran tactile.
+  (function () {
+    var h = document.documentElement;
+    h.classList.remove('js-loading'); h.classList.add('js');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('rm');
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) h.classList.add('fine');
+  })();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"}}</script>
+</head>
+<body>
+<a class="skip" href="#carte">Aller à la carte</a>
+
+<!-- Ouverture : la cloche se soulève sur le nom -->
+<div id="intro" aria-hidden="true">
+  <p class="intro-kicker"><span>Bistrot de quartier</span><span>·</span><span>Saint-Aubrelle</span></p>
+  <h2 class="intro-title"><span class="it-l1">Le Zinc</span><span class="it-l2">de Marcelin</span></h2>
+  <div class="steam"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="intro-stage" data-view="intro"></div>
+  <button type="button" class="intro-skip">Passer <span aria-hidden="true">→</span></button>
+</div>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="thread-progress" id="prog" aria-hidden="true"><i></i></div>
+
+<div class="demo-bar">Site de démonstration — commerce fictif</div>
+
+<header class="top">
+  <a class="logo" href="#accueil">Le Zinc <em>de Marcelin</em></a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span></button>
+  <nav id="menu" aria-label="Navigation principale">
+    <a href="#carte">La carte</a><a href="#plats">Les plats</a><a href="#midi">Formules midi</a><a href="#reserver">Réserver</a><a href="#privatisation">Privatisation</a><a href="#avis">Avis</a><a href="#contact">Horaires</a>
+  </nav>
+  <a class="btn btn-sm" href="#reserver"><span>Réserver</span></a>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-text">
+    <p class="kicker" data-a="fade">Bistrot de quartier · Saint-Aubrelle</p>
+    <h1 class="hero-title"><span class="ln"><span>La cuisine du marché,</span></span><span class="ln"><span><em>au comptoir</em></span></span><span class="ln"><span>comme à table.</span></span></h1>
+    <p class="hero-lead" data-a="fade">Plats mijotés, produits de saison, ardoise qui change chaque semaine. Formule midi dès 17,50 €.</p>
+    <p class="hero-cta" data-a="fade"><a class="btn" href="#reserver"><span>Réserver une table</span></a> <a class="btn ghost" href="#carte"><span>Voir la carte</span></a></p>
+  </div>
+  <div class="hero-photo" data-parallax>
+    <img src="photos/hero.webp" alt="Salle de bistrot animée" width="800" height="533">
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span>Défiler</span><i></i></div>
+</section>
+
+<section class="band" aria-label="Nos engagements">
+  <div class="marquee"><div class="mq-track">
+    <ul class="usp">
+      <li><strong>Cuisine maison</strong> faite chaque matin</li>
+      <li><strong>Producteurs</strong> à moins de 80 km</li>
+      <li><strong>Formule midi</strong> dès 17,50 €</li>
+      <li><strong>Terrasse</strong> aux beaux jours</li>
+    </ul>
+    <ul class="usp" aria-hidden="true">
+      <li><strong>Cuisine maison</strong> faite chaque matin</li>
+      <li><strong>Producteurs</strong> à moins de 80 km</li>
+      <li><strong>Formule midi</strong> dès 17,50 €</li>
+      <li><strong>Terrasse</strong> aux beaux jours</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- LA CARTE : prisme d'ardoises épinglé -->
+<section id="carte" class="carte pin-sec">
+  <div class="pin-in">
+    <div class="carte-head">
+      <p class="kicker">La carte</p>
+      <h2 class="h2" data-a="lines">Écrite à la craie,<br>changée chaque semaine.</h2>
+      <p class="lead">Carte d'exemple, renouvelée avec les saisons. Prix nets, service compris.</p>
+    </div>
+    <div class="slate-scene" id="slate-scene"><div class="slate-ring" id="ring"></div></div>
+    <ul class="slate-tabs" id="slate-tabs" aria-hidden="true"></ul>
+  </div>
+</section>
+
+<!-- LES PLATS : assiettes qui glissent -->
+<section id="plats" class="sec plats">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Au passe</p>
+      <h2 class="h2" data-a="chars">Ça sort de la cuisine</h2>
+    </div>
+    <div class="dishes">
+      <figure class="dish"><div class="dish-p"><img src="photos/plat1.webp" alt="Filet de poisson grillé et poivré" width="800" height="600" loading="lazy"></div><figcaption><b>Poisson du jour, grillé</b><span class="chalk">22 €</span></figcaption></figure>
+      <figure class="dish"><div class="dish-p"><img src="photos/plat2.webp" alt="Champignons et céleri rôtis dans un plat" width="800" height="600" loading="lazy"></div><figcaption><b>Poêlée de champignons, plat végétarien</b><span class="chalk">16 €</span></figcaption></figure>
+      <figure class="dish"><div class="dish-p"><img src="photos/plat3.webp" alt="Galette de pomme de terre au saumon fumé" width="800" height="600" loading="lazy"></div><figcaption><b>Galette de pomme de terre, saumon fumé</b><span class="chalk">12 €</span></figcaption></figure>
+      <figure class="dish"><div class="dish-p"><img src="photos/dessert1.webp" alt="Gâteau au chocolat et crème" width="800" height="600" loading="lazy"></div><figcaption><b>Gâteau au chocolat maison</b><span class="chalk">8,50 €</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULES MIDI : tickets -->
+<section id="midi" class="sec midi alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Du mardi au vendredi, midi</p>
+      <h2 class="h2" data-a="lines">Les formules du midi</h2>
+    </div>
+    <div class="slot" aria-hidden="true"><i></i></div>
+    <div class="tickets">
+      <article class="tk"><p class="tk-top">Formule n° 1</p><h3>Plat du jour</h3><p class="tk-desc">Le plat de l'ardoise, un verre de vin ou une eau, un café.</p><p class="tk-price"><span>à payer</span><b>14,50 €</b></p><i class="bars" aria-hidden="true"></i></article>
+      <article class="tk pop"><p class="tk-top">Formule n° 2 · la plus choisie</p><h3>Entrée + plat ou plat + dessert</h3><p class="tk-desc">Le choix de l'ardoise, à lire sur place chaque matin.</p><p class="tk-price"><span>à payer</span><b>17,50 €</b></p><i class="bars" aria-hidden="true"></i></article>
+      <article class="tk"><p class="tk-top">Formule n° 3</p><h3>Entrée + plat + dessert</h3><p class="tk-desc">La formule complète, pain et carafe d'eau compris.</p><p class="tk-price"><span>à payer</span><b>22,00 €</b></p><i class="bars" aria-hidden="true"></i></article>
+    </div>
+    <p class="center"><a class="btn" href="#reserver" data-type="Repas simple"><span>Réserver pour le midi</span></a></p>
+  </div>
+</section>
+
+<!-- RÉSERVER : la table 3D -->
+<section id="reserver" class="sec resa">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Réservation</p>
+      <h2 class="h2" data-a="chars" id="resa-title">Une table pour vous</h2>
+      <p class="lead">Choisissez le nombre de couverts : la table se dresse. Au-delà de 8 personnes, passez par la privatisation.</p>
+    </div>
+    <div class="resa-grid">
+      <div class="table-col">
+        <div class="table-stage" data-view="table"><div class="fallback" aria-hidden="true"><svg viewBox="0 0 200 140"><ellipse cx="100" cy="80" rx="80" ry="34" fill="#b0282f"/><ellipse cx="100" cy="74" rx="80" ry="34" fill="#e9e1d2"/><circle cx="100" cy="74" r="6" fill="#d4a04a"/></svg></div></div>
+        <p class="table-read" aria-live="polite"><b id="couv">2</b> <span id="couv-txt">couverts</span></p>
+      </div>
+
+      <form id="order" novalidate>
+        <fieldset class="fs"><legend><span class="n">1</span> Combien de couverts ?</legend>
+          <div class="step-n"><button type="button" id="moins" aria-label="Un couvert de moins">−</button><b id="couverts" aria-live="polite">2</b><button type="button" id="plus" aria-label="Un couvert de plus">+</button><span class="step-hint">de 1 à 12</span></div>
+        </fieldset>
+        <fieldset class="fs"><legend><span class="n">2</span> Quand ?</legend>
+          <div class="fields">
+            <label class="fld"><span>Date</span><input type="date" id="jour"></label>
+            <label class="fld"><span>Heure</span><select id="heure"></select></label>
+          </div>
+        </fieldset>
+        <fieldset class="fs"><legend><span class="n">3</span> L'occasion</legend>
+          <div class="chips" id="occasion" role="radiogroup" aria-label="Occasion">
+            <button type="button" class="chip" role="radio" aria-checked="true" data-v="Repas simple">Repas simple</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Anniversaire">Anniversaire</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Repas d'affaires">Repas d'affaires</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-v="Privatisation">Privatisation</button>
+          </div>
+          <label class="fld" style="margin-top:16px"><span>Allergies ou remarques</span><input type="text" id="note"></label>
+        </fieldset>
+        <fieldset class="fs"><legend><span class="n">4</span> À quel nom ?</legend>
+          <div class="fields">
+            <label class="fld"><span>Nom</span><input type="text" id="nom" autocomplete="name"></label>
+            <label class="fld"><span>Téléphone</span><input type="tel" id="tel" placeholder="00 00 00 00 00"></label>
+          </div>
+        </fieldset>
+        <button class="btn" id="valider" type="submit"><span>Réserver (démo)</span></button>
+        <p id="msg" role="status"></p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <div class="recap" tabindex="-1">
+          <p class="kicker">Table réservée</p>
+          <h3 class="h3">On vous garde la meilleure place.</h3>
+          <dl id="recap-list"></dl>
+          <p class="recap-demo"><strong>Démo : aucune demande réelle envoyée.</strong></p>
+          <button type="button" class="btn ghost" id="again"><span>Nouvelle réservation</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVATISATION -->
+<section id="privatisation" class="sec priv alt">
+  <div class="wrap split">
+    <div class="gal">
+      <div class="gimg g1"><img src="photos/salle.webp" alt="Salle de restaurant avec tables dressées" width="800" height="533" loading="lazy"></div>
+      <div class="gimg g2"><img src="photos/vin.webp" alt="Verres de vin rouge sur une table" width="800" height="533" loading="lazy"></div>
+    </div>
+    <div>
+      <p class="kicker">Repas de famille, d'équipe, anniversaires</p>
+      <h2 class="h2" data-a="lines">Privatisez<br>notre salle</h2>
+      <p>L'arrière-salle accueille de 12 à 38 convives, avec un menu composé ensemble et un service dédié.</p>
+      <ul class="ticks"><li>Menu groupe à partir de <strong>38 € par personne</strong></li><li>Salle seule le soir : 150 €, offerts dès 800 € de repas</li><li>Gâteau et décoration sur demande</li><li>Réponse sous 24 h avec proposition de menu</li></ul>
+      <a class="btn" href="#reserver" data-type="Privatisation"><span>Demander la privatisation</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CUISINE -->
+<section id="cuisine" class="sec cuis">
+  <div class="wrap split flip">
+    <div>
+      <p class="kicker">En cuisine</p>
+      <h2 class="h2" data-a="lines">Du feu, du temps,<br>du goût</h2>
+      <p>Fonds, jus et sauces sont faits ici. Marcelin, le chef fictif de cette démo, achète à quelques producteurs de confiance et change l'ardoise selon l'arrivage.</p>
+      <ul class="ticks"><li>Viandes de producteurs de la région</li><li>Plats végétariens tous les jours</li><li>Allergies : prévenez-nous à la réservation</li></ul>
+    </div>
+    <div class="gal one"><div class="gimg g1"><img src="photos/cuisine.webp" alt="Cuisinier au travail en cuisine" width="800" height="533" loading="lazy"></div></div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="sec avis alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2" data-a="chars">Ils sont venus déjeuner</h2>
+      <p class="lead">Avis d'exemple, rédigés pour la démonstration.</p>
+    </div>
+    <div class="reviews">
+      <blockquote class="rev"><p>« Le poulet rôti, simplement parfait. On reviendra jeudi. »</p><cite>— Sophie L. · exemple</cite></blockquote>
+      <blockquote class="rev"><p>« Repas d'anniversaire en salle privée : service aux petits soins. »</p><cite>— Famille Martel · exemple</cite></blockquote>
+      <blockquote class="rev"><p>« La formule midi à 17,50 €, imbattable dans le quartier. »</p><cite>— Karim B. · exemple</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- HORAIRES -->
+<section id="contact" class="contact">
+  <div class="wrap split">
+    <div>
+      <h2 class="h2" data-a="lines">Horaires &amp; adresse</h2>
+      <p class="open-now" id="open-now"><i></i><span>—</span></p>
+      <table class="hours"><caption class="sr">Horaires d'ouverture</caption>
+        <tr data-d="2,3,4,5"><th>Mardi – Vendredi</th><td>12 h – 14 h 30 · 19 h – 22 h 30</td></tr>
+        <tr data-d="6"><th>Samedi</th><td>12 h – 14 h 30 · 19 h – 23 h</td></tr>
+        <tr data-d="0"><th>Dimanche</th><td>12 h – 15 h</td></tr>
+        <tr data-d="1"><th>Lundi</th><td>Fermé</td></tr></table>
+      <address>8 place du Marché, 00000 Saint-Aubrelle<br><em>(adresse fictive)</em></address>
+      <p><a class="link" href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Voir sur la carte (lien à remplacer)</a></p>
+    </div>
+    <div>
+      <h2 class="h2" data-a="lines">Contact</h2>
+      <p>Téléphone : <a class="link" href="tel:+33000000000">00 00 00 00 00</a> <em>(numéro fictif)</em></p>
+      <p>Courriel : <a class="link" href="mailto:bonjour@exemple.invalid">bonjour@exemple.invalid</a> <em>(adresse fictive)</em></p>
+      <p>Groupes de plus de 8 personnes : passez par la privatisation.</p>
+      <p class="big-cta"><a class="btn" href="#reserver"><span>Réserver une table</span></a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="foot-brand serif">Le Zinc <em>de Marcelin</em></p>
+  <p><strong>Site de démonstration — commerce fictif.</strong> Le Zinc de Marcelin n'existe pas ; aucune réservation réelle.</p>
+  <details><summary>Mentions légales (à remplir)</summary>
+    <p>Éditeur : [raison sociale] — [forme juridique] — SIRET [à compléter]<br>Adresse : [à compléter] · Directeur de la publication : [à compléter]<br>Hébergeur : [nom, adresse] · Données personnelles : [politique à rédiger]<br>Photos : licence CC0, voir <a href="photos/SOURCES.md">sources</a>.</p>
+  </details>
+</footer>
+<div class="demo-bar bottom">Site de démonstration — commerce fictif</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
+<script type="module" src="scene.js"></script>
+</body>
+</html>
