@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Maison Origine — torréfacteur et café de quartier</title>
+<meta name="description" content="Maison Origine : café de spécialité torréfié sur place, viennoiseries du matin, un lieu calme pour s'asseoir. (Maquette, informations d'exemple.)">
+<meta name="theme-color" content="#0d0a08">
+<link rel="preload" href="fonts/serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/grains-pc.webp" as="image" media="(min-width:700px)">
+<link rel="preload" href="img/grains-m.webp" as="image" media="(max-width:699px)">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#histoire">Aller au contenu</a>
+<header class="nav" id="top">
+  <a class="logo" href="#top" aria-label="Maison Origine, accueil">Maison <i>Origine</i></a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="links"><span></span><span></span><span class="sr">Menu</span></button>
+  <nav id="links" aria-label="Navigation principale">
+    <a href="#histoire">Histoire</a><a href="#carte">Carte</a><a href="#galerie">Galerie</a><a href="#venir">Venir</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<!-- Scène épinglée : tout est piloté par la position du scroll (app.js) -->
+<section class="stage" id="parcours" aria-label="Du grain à la tasse, en images">
+ <div class="pin">
+  <div class="scene" id="scene">
+    <div class="bg" id="bg"></div>
+    <img class="ph full" id="ph-grains" src="img/grains-pc.webp" srcset="img/grains-m.webp 900w, img/grains-pc.webp 1600w" sizes="100vw" alt="" decoding="async">
+    <img class="ph full" id="ph-inter" src="img/interieur-pc.webp" srcset="img/interieur-m.webp 900w, img/interieur-pc.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async">
+    <img class="ph full" id="ph-crois" src="img/croissant-pc.webp" srcset="img/croissant-m.webp 900w, img/croissant-pc.webp 1122w" sizes="100vw" alt="" loading="lazy" decoding="async">
+    <div class="beam" id="beam"></div>
+    <img class="ph cup" id="ph-esp" src="img/espresso-pc.webp" alt="" loading="lazy" decoding="async" data-cx=".535" data-cy=".66" data-rim=".87" data-s1=".375" data-s2=".667" data-sy=".31">
+    <img class="ph cup" id="ph-lait" src="img/lait-b-pc.webp" alt="" loading="lazy" decoding="async" data-cx=".50" data-cy=".575" data-rim=".84" data-s1=".60" data-sy=".53">
+    <div class="glint" id="glint"></div>
+    <div class="top" id="top-view"><img src="img/t-mousse.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="stack" id="stack">
+      <div class="layer" data-k="mousse"><i class="sh"></i><div class="disc" style="--tex:url(img/t-mousse.webp)"></div><p class="lab"><b>Mousse</b>micro-bulles, 2 mm</p></div>
+      <div class="layer m-off" data-k="lait"><i class="sh"></i><div class="disc lait"></div><p class="lab"><b>Lait entier</b>monté à 65 °C</p></div>
+      <div class="layer" data-k="espresso"><i class="sh"></i><div class="disc" style="--tex:url(img/t-crema.webp)"></div><p class="lab"><b>Espresso</b>18 g pour 36 g, 27 s</p></div>
+      <div class="layer m-off" data-k="eau"><i class="sh"></i><div class="disc eau"></div><p class="lab"><b>Eau</b>filtrée, 93 °C</p></div>
+      <div class="layer" data-k="mouture"><i class="sh"></i><div class="disc" style="--tex:url(img/t-mouture.webp)"></div><p class="lab"><b>Mouture</b>fine, à la minute</p></div>
+      <div class="layer" data-k="grain"><i class="sh"></i><div class="disc" style="--tex:url(img/t-grains.webp)"></div><p class="lab"><b>Grain</b>arabica, torréfié ici</p></div>
+    </div>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <canvas id="fx" aria-hidden="true"></canvas>
+    <div class="halo" id="halo"></div>
+  </div>
+
+  <div class="copy">
+    <div class="t t-hero" data-in="-1" data-out=".55">
+      <p class="kick ln"><span>Torréfacteur &amp; café de quartier · exemple</span></p>
+      <h1 class="ln-letters" aria-label="Maison Origine"><span class="w">Maison</span> <span class="w it">Origine</span></h1>
+      <p class="hint ln"><span>Faites défiler, doucement.</span></p>
+    </div>
+    <div class="t t-r" data-in=".55" data-out="1.5"><p class="num ln"><span>01 — Le grain</span></p><h2><span class="ln"><span>Tout commence</span></span><span class="ln"><span><i>par un grain.</i></span></span></h2><p class="ln"><span>Moulu à la minute, il éclate en poudre.</span></p></div>
+    <div class="t t-l" data-in="1.6" data-out="2.6"><p class="num ln"><span>02 — L'extraction</span></p><h2><span class="ln"><span>L'eau la traverse</span></span><span class="ln"><span><i>en 27 secondes.</i></span></span></h2><p class="ln"><span>À 93 °C, ni plus ni moins.</span></p></div>
+    <div class="t t-r" data-in="2.75" data-out="3.65"><p class="num ln"><span>03 — L'espresso</span></p><h2><span class="ln"><span>Deux filets,</span></span><span class="ln"><span><i>une crème noisette.</i></span></span></h2></div>
+    <div class="t t-l" data-in="3.75" data-out="4.65"><p class="num ln"><span>04 — Le lait</span></p><h2><span class="ln"><span>Monté à 65 °C,</span></span><span class="ln"><span><i>jamais plus.</i></span></span></h2><p class="ln"><span>Au-delà, il perd sa douceur.</span></p></div>
+    <div class="t t-r" data-in="4.8" data-out="5.7"><p class="num ln"><span>05 — Le dessin</span></p><h2><span class="ln"><span>Tracé à main levée,</span></span><span class="ln"><span><i>jamais deux fois pareil.</i></span></span></h2></div>
+    <div class="t t-l t-up" data-in="5.85" data-out="7.25"><p class="num ln"><span>06 — Dans votre tasse</span></p><h2><span class="ln"><span>Six couches,</span></span><span class="ln"><span><i>rien de caché.</i></span></span></h2></div>
+    <div class="t t-r" data-in="7.6" data-out="8.6"><p class="num ln"><span>07 — Le four</span></p><h2><span class="ln"><span>Et chaque matin,</span></span><span class="ln"><span><i>le beurre.</i></span></span></h2><p class="ln"><span>Viennoiseries cuites sur place dès 6 h.</span></p></div>
+    <div class="t t-l t-end" data-in="9.1" data-out="99"><p class="num ln"><span>08 — Le lieu</span></p><h2><span class="ln"><span>Un endroit</span></span><span class="ln"><span><i>où s'asseoir.</i></span></span></h2><p class="ln"><span>12 rue des Torréfacteurs, Orléans (exemple).</span></p></div>
+  </div>
+  <div class="prog" aria-hidden="true"><i id="bar"></i></div>
+  <button class="gyro" id="gyro" hidden>Activer l'inclinaison</button>
+ </div>
+</section>
+
+<section class="sec" id="histoire">
+  <div class="wrap two">
+    <div><p class="kicker">Notre histoire</p><h2 class="mk"><span class="ln"><span>Un petit torréfacteur</span></span><span class="ln"><span><i>de quartier.</i></span></span></h2></div>
+    <div class="txt">
+      <p>Maison Origine est née d'une idée simple : servir un café dont on connaît l'histoire. Nous travaillons directement avec quelques petits producteurs, et nous torréfions en petites séries pour garder le goût du grain.</p>
+      <p>Ici, rien n'est pressé. Du grain à la tasse, chaque étape est faite avec soin, par des gens qui aiment ce qu'ils servent.</p>
+      <ul class="facts"><li><b>3</b>origines suivies</li><li><b>7 j</b>entre torréfaction et tasse</li><li><b>100 %</b>arabica</li></ul>
+      <p class="mini">Texte et chiffres d'exemple (maquette).</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="carte">
+  <div class="wrap">
+    <div class="head"><p class="kicker">La carte</p><h2 class="mk"><span class="ln"><span>Boissons</span></span><span class="ln"><span><i>et douceurs.</i></span></span></h2><p class="mini">Prix « exemple », non contractuels. Ingrédients indiqués sous chaque nom.</p></div>
+    <div class="menu">
+      <div><h3>Cafés</h3><ul>
+        <li><span><b>Espresso</b><i>Grain de la maison, eau filtrée</i></span><em>2,50 €</em></li>
+        <li><span><b>Allongé</b><i>Espresso, eau chaude filtrée</i></span><em>3,00 €</em></li>
+        <li><span><b>Filtre du jour</b><i>Origine au choix, méthode douce</i></span><em>3,80 €</em></li>
+        <li><span><b>Cortado</b><i>Espresso, un trait de lait chaud</i></span><em>3,60 €</em></li></ul></div>
+      <div><h3>Au lait</h3><ul>
+        <li><span><b>Cappuccino</b><i>Espresso, lait mousseux, cacao</i></span><em>4,20 €</em></li>
+        <li><span><b>Latte</b><i>Double espresso, lait velouté</i></span><em>4,60 €</em></li>
+        <li><span><b>Flat white</b><i>Double espresso, micro-mousse</i></span><em>4,50 €</em></li>
+        <li><span><b>Chocolat chaud</b><i>Chocolat noir 70 %, lait entier</i></span><em>4,80 €</em></li></ul></div>
+      <div><h3>À grignoter</h3><ul>
+        <li><span><b>Croissant pur beurre</b><i>Farine, beurre AOP, levain</i></span><em>1,90 €</em></li>
+        <li><span><b>Pain au chocolat</b><i>Farine, beurre, chocolat noir</i></span><em>2,10 €</em></li>
+        <li><span><b>Cake du moment</b><i>Œufs, beurre, fruits de saison</i></span><em>3,50 €</em></li>
+        <li><span><b>Tartine</b><i>Pain de campagne, beurre, confiture</i></span><em>4,50 €</em></li></ul></div>
+    </div>
+    <p class="mini">Boissons végétales sur demande (+0,40 €, exemple). Allergènes : lait, gluten, œufs, fruits à coque.</p>
+  </div>
+</section>
+
+<section class="sec" id="galerie">
+  <div class="wrap">
+    <div class="head"><p class="kicker">Galerie</p><h2 class="mk"><span class="ln"><span>Le lieu, la tasse,</span></span><span class="ln"><span><i>le four.</i></span></span></h2></div>
+    <div class="gal">
+      <figure class="g1"><img loading="lazy" src="img/interieur-pc.webp" srcset="img/interieur-m.webp 900w, img/interieur-pc.webp 1600w" sizes="(max-width:699px) 100vw, 60vw" alt="Salle lumineuse avec plantes et comptoir en bois" width="1600" height="900"><figcaption>La salle</figcaption></figure>
+      <figure class="g2"><img loading="lazy" src="img/croissant-m.webp" alt="Croissant doré sur une planche en bois" width="900" height="1124"><figcaption>Le croissant, chaque matin</figcaption></figure>
+      <figure class="g3"><img loading="lazy" src="img/mouture-m.webp" alt="Café moulu qui tombe du porte-filtre" width="900" height="1124"><figcaption>La mouture</figcaption></figure>
+      <figure class="g4"><img loading="lazy" src="img/latte-art-m.webp" alt="Latte vu du dessus, motif en feuille" width="900" height="900"><figcaption>Le latte</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="venir">
+  <div class="wrap two">
+    <div><p class="kicker">Venir nous voir</p><h2 class="mk"><span class="ln"><span>Adresse</span></span><span class="ln"><span><i>et horaires.</i></span></span></h2>
+      <p class="addr">12 rue des Torréfacteurs<br>45000 Orléans <span class="mini">(adresse d'exemple)</span></p></div>
+    <div><dl class="hours"><div><dt>Lundi – vendredi</dt><dd>7 h 30 – 18 h</dd></div><div><dt>Samedi</dt><dd>8 h 30 – 19 h</dd></div><div><dt>Dimanche</dt><dd>9 h – 14 h</dd></div></dl>
+      <p class="mini">Horaires d'exemple. Accès de plain-pied, terrasse aux beaux jours.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap two">
+    <div><p class="kicker">Contact</p><h2 class="mk"><span class="ln"><span>Un mot</span></span><span class="ln"><span><i>pour nous ?</i></span></span></h2><p>Privatisation, groupes, ou simple question sur un grain : écrivez-nous, on répond dans la journée.</p></div>
+    <form id="form" novalidate>
+      <label for="f-n">Votre nom</label><input id="f-n" name="n" type="text" autocomplete="name" required>
+      <label for="f-e">Votre e-mail</label><input id="f-e" name="e" type="email" autocomplete="email" required>
+      <label for="f-m">Votre message</label><textarea id="f-m" name="m" rows="3" required></textarea>
+      <button type="submit">Envoyer</button>
+      <p class="mini" id="ok" role="status">Maquette : rien n'est envoyé.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <strong>Maison <i>Origine</i></strong>
+    <span>© 2026 · Maquette fictive, images générées · <a href="#top">Mentions légales</a> (exemple)</span>
+    <span><a href="#top">Instagram</a> · <a href="#top">Facebook</a></span>
+  </div>
+</footer>
+<script src="gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
